@@ -8,9 +8,14 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Init Middleware
-app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'https://mern-client-6fcb.vercel.app', // Frontend URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  };
+  
+  // Middleware
+  app.use(express.json());
+  app.use(cors(corsOptions));
 
 app.use('/api/companies', require('./routes/UserRoute'));
 app.use('/api/jobs', require('./routes/JobRoutes'));
